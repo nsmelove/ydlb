@@ -1,0 +1,62 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.4.3",
+	"appid": "wx2223ba0264d4b5c4",
+	"projectname": "ydlb",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 2,
+			"list": [
+				{
+					"id": -1,
+					"name": "t",
+					"pathName": "pages/23jy/shangCh",
+					"query": "",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "t",
+					"pathName": "pages/23jy/shangCh",
+					"query": "id = '5'",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "t",
+					"pathName": "pages/23jy/shangCh",
+					"query": "scene=5",
+					"scene": "1011"
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,23 @@
+<swiper style='width:750rpx;height:height:380rpx' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" interval="{{interval}}" duration="{{duration}}">
+  <view wx:for="{{homeBanner}}" wx:key="item.id">
+    <swiper-item>
+      <image style='width:750rpx;height:380rpx' src='{{item.url}}' id='{{item.id}}'></image>
+    </swiper-item>
+  </view>
+</swiper>
+
+<block wx:for="{{contList}}" wx:key="{{item.url}}">
+  <view class='v' hover-class='hover_ui' id='{{item.id}}' bindtap='bcgClick'>
+    <view class='box_hd'>
+      <image class='image' src='{{item.url}}'></image>
+    </view>
+    <view class='v11'>
+      <view class='v2' style='font-size:80%;color:rgb(29, 122, 209)'>{{item.text1}}</view>
+      <view class='v33' style='font-size:60%'>{{item.text2}}</view>
+    </view>
+  </view>
+</block>
+
+<view style=' text-align: center'>
+  <video class='video' poster='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/video%2Fxcpp.png' src='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/video%2Fxcp.mp4' autoplay='true'></video>
+</view>

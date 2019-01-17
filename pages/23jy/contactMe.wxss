@@ -1,0 +1,89 @@
+.line{
+  margin-top: 12rpx;
+  width: 750rpx;
+  border-top: 2rpx dashed #65c7fc
+}
+
+.logo image {
+  border-radius:2%;
+  width: 730rpx;
+  max-height: 348.8rpx;
+  display:block;
+  margin: 5px auto;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.main .b1{
+  line-height: 76rpx;
+  border: 0px;
+  background-color: #65c7fc;
+  color: white;
+
+}
+.main .b1::after{
+display: none
+}
+
+.main .vw1 {
+  display: flex;
+  width: 106px;
+  height: 76rpx;
+  background-color: #65c7fc;
+  border-radius: 8rpx;
+}
+
+.main .iag {
+  width: 76rpx;
+  height: 76rpx;
+}
+.main .img {
+  width: 750rpx;
+  height: 422rpx;
+}
+
+.g3d{
+  width: 730rpx;
+  height: 460rpx;
+  border-radius:2%
+}
+
+.contact{
+  padding: 15px;
+  user-select: text;
+}
+.contact text{
+  display: block;
+}
+.contact .name{
+  font-size: 18px;
+}
+.contact .company{
+  margin-top: 5px;
+}
+.contact .company text{
+  font-size: 14px;
+}
+.contact .contact-way{
+  margin-top: 15px;
+  font-size: 16px;
+}
+.contact .contact-way text{
+  margin-top:5px;
+}
+.major-intr{
+  font-size: 17px;
+}
+.major-intr text{
+  display: block;
+  padding: 5px 15px;
+}
+.major-intr video {
+  border-radius:2%;
+  width: 730rpx;
+  display:block;
+  margin: 5px auto;
+}

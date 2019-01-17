@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/23jy/home",
+    "pages/23jy/3Dty",
+    "pages/23jy/homeItem",
+    "pages/23jy/contactMe",
+    "pages/23jy/bcgContent",
+    "pages/23jy/bcg",
+    "pages/23jy/shangCh"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#0d7e7e",
+    "list": [
+      {
+        "pagePath": "pages/23jy/home",
+        "iconPath": "pages/23jy/tabbarIcon/1black.png",
+        "selectedIconPath": "pages/23jy/tabbarIcon/1blue.png",
+        "text": "home"
+      },
+      {
+        "pagePath": "pages/23jy/bcg",
+        "iconPath": "pages/23jy/tabbarIcon/2black.png",
+        "selectedIconPath": "pages/23jy/tabbarIcon/2blue.png",
+        "text": "bcgene"
+      },
+      {
+        "pagePath": "pages/23jy/shangCh",
+        "iconPath": "pages/23jy/tabbarIcon/shangChBlack.png",
+        "selectedIconPath": "pages/23jy/tabbarIcon/shangChBlue.png",
+        "text": "shop"
+      },
+      {
+        "pagePath": "pages/23jy/contactMe",
+        "iconPath": "pages/23jy/tabbarIcon/3black.png",
+        "selectedIconPath": "pages/23jy/tabbarIcon/3blue.png",
+        "text": "contact me"
+      }
+    ]
+  }
+}

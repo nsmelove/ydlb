@@ -1,0 +1,23 @@
+<view style='text-align:center;margin-top:12rpx;font-size:80%'>
+<text>【基因科学馆】探索生命科学的起源之旅……</text>
+<text>\n</text>
+<view style='font-size:80%;margin-left:10rpx;margin-right:10rpx;color:rgb(29, 122, 209);text-align:center'>
+<video style='width:730rpx;height:460rpx;margin-top:18rpx;border-radius:2%' src='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/--homeItem--/item00/3dtyshp.mp4' autoplay='true'></video>
+<image src='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/--homeItem--/item00/3dty/1.jpg' class='g3d'></image>
+<image src='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/--homeItem--/item00/3dty/2.jpg' class='g3d'></image>
+<image src='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/--homeItem--/item00/3dty/3.jpg' class='g3d'></image>
+<image src='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/--homeItem--/item00/3dty/4.jpg' class='g3d'></image>
+<image src='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/--homeItem--/item00/3dty/5.jpg' class='g3d'></image>
+<image src='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/--homeItem--/item00/3dty/6.jpg' class='g3d'></image>
+<image src='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/--homeItem--/item00/3dty/7.jpg' class='g3d'></image>
+<image src='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/--homeItem--/item00/3dty/8.jpg' class='g3d'></image>
+<image src='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/--homeItem--/item00/3dty/9.jpg' class='g3d'></image>
+<image src='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/--homeItem--/item00/3dty/10.jpg' class='g3d'></image>
+</view>
+
+<view style='text-align:center;font-size:80%;color:rgb(29, 122, 209)'>
+<text>深圳人体密码基因科学馆\n\n</text>
+<text>通过3D投影、声光触控等高科技手段,\n\n</text>
+<text>向大众展现基因科技神奇的一面</text>
+</view>
+</view>

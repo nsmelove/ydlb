@@ -1,0 +1,43 @@
+<view>
+  <view style='text-align:center;margin-bottom:18rpx;color:rgb(29, 122, 209);font-size:80%'>
+    <text>人体秘密因科普馆</text>
+    <text>\n</text>
+    <text>↓↓↓开启一段奇妙的生命起源之旅↓↓↓</text>
+  </view>
+
+  <view style='height:348.8rpx;margin-bottom:18rpx'>
+    <image style='width:730rpx;height:348.8rpx;border-radius:2%;margin-left:10rpx' src='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/--homeItem--/item00/3dty.jpg' id='999' bindtap='clickMe'></image>
+  </view>
+
+  <block wx:for="{{contList}}" wx:key="{{item.url}}">
+
+    <view id='{{item.id}}' bindtap='bcgClick' style='display:flex;margin-bottom:18rpx;align-items:center'>
+
+      <view style='margin-left:10rpx;margin-right:10rpx'>
+        <image style='width:120rpx;height:120rpx;border-radius:2%' src='{{item.url}}'></image>
+      </view>
+
+      <view class='v11'>
+        <view class='v2' style='font-size:80%;color:rgb(29, 122, 209)'>{{item.text1}}</view>
+        <view class='v33' style='font-size:60%'>{{item.text2}}</view>
+      </view>
+
+    </view>
+
+  </block>
+
+  <view style='display:flex;flex-wrap: wrap'>
+    <block wx:for="{{homeItem}}" wx:key='item.id'>
+      <view id="{{item.id}}" bindtap='navigateT' style='width: 360rpx;margin-left:10rpx;font-size:70%'>
+        <image style='border-radius:2%;width: 360rpx;height: 330rpx' src='{{item.Pic}}'></image>
+        <text>{{item.text}}</text>
+        <text>{{item.info}}</text>
+      </view>
+    </block>
+  </view>
+
+
+  <view style=' text-align: center'>
+    <video class='video' poster='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/video%2Fship.png' src='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/video%2Fjykp.mp4' autoplay='{{tv}}'></video>
+  </view>
+</view>

@@ -1,0 +1,21 @@
+
+.topImg{
+  width: 750rpx;
+  height: 600rpx
+}
+.midLine{
+  width: 750rpx;
+  height: 8rpx;
+  background-color: rgb(182, 182, 182);
+}
+.contentLine{
+  flex-grow: 1;
+  width: 300rpx;
+  height: 3rpx;
+  background-color: rgb(182, 182, 182);
+}
+.bottomImg{
+  width: 750rpx;
+  height: 1600rpx;
+  background-color: rgb(23, 143, 73)
+}

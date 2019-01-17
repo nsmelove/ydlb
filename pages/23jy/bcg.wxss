@@ -1,0 +1,80 @@
+.swi {
+  height: 480rpx
+}
+
+.v {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 15px;
+  position: relative
+}
+.box_hd{
+  margin-right: .8em;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center
+}
+
+.hover_ui{
+  background-color: #ececec
+}
+
+.v2 {
+  font-weight: 400;
+  font-size: 17px;
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.v3 {
+  width: 590rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.v33 {
+  display: -webkit-box;
+  font-size: 13px;
+  color: rgb(183, 183, 184);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.v11 {
+  -webkit-box-flex: 1;
+  -webkit-flex:1;
+  flex: 1;
+  min-width: 0
+}
+
+.v111 {
+  border-left-style: solid;
+  border-left-color: rgb(52, 123, 231);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  border-radius:2%
+}
+
+.video {
+  margin-bottom: 10rpx;
+  width: 730rpx;
+  border-radius:2%
+}
+

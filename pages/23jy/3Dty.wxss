@@ -1,0 +1,6 @@
+/* pages/23jy/3Dty.wxss */
+.g3d{
+  width: 730rpx;
+  height: 460rpx;
+  border-radius:2%
+}

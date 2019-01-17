@@ -1,0 +1,324 @@
+/* 全局样式 */
+page {
+    background: #f8f8f8;
+}
+.page{
+  display: block;
+  padding-top: 80rpx;
+}
+.tap-on {
+  opacity: 0.8;
+}
+/* 顶层菜单 */
+.top-tab{
+  position: fixed;
+  display: block;
+  top: 0px;
+  width: 100%;
+  height: 80rpx;
+  background: #f8f8f8;
+  z-index: 99;
+  border-bottom: 1rpx solid #e0e0e0;
+} 
+.top-tab .tab-home,
+.top-tab .tab-car,
+.top-tab .tab-order{
+  position: relative;
+  display: inline-block;
+  width: 33.33%;
+}
+.top-tab .tab-home image,
+.top-tab .tab-car image,
+.top-tab .tab-order image{
+  display: block;
+  margin:10rpx auto; 
+  width:60rpx;
+  height:60rpx;
+}
+
+.top-tab .tip-num{
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 60%; 
+  width:30rpx;
+  height:30rpx;
+  border-radius: 50%; 
+  background-color: #0775f3;
+  color: #fff;
+  text-align: center;
+  font-size: 20rpx;
+  
+}
+.top-tab .dot {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 55%; 
+  width:16rpx;
+  height:16rpx;
+  border-radius: 50%; 
+  background-color: #0775f3;
+  color: #fff;
+}
+
+/**商品列表*/
+.shop {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+.shop .no-item{
+  display: block;
+  width: 100%;
+  border: 1px solid transparent;
+}
+.shop .no-item image{
+  display: block;
+  margin: 30% auto 0rpx;
+  width: 120rpx;
+  height: 120rpx;
+}
+.shop .no-item text{
+  display: block;
+  width: 100%;
+  margin: 5% auto;
+  text-align: center;
+}
+.shop .shop-item{
+  position: relative;
+  width: 49%;
+  margin: 0 0 3% 0.5%;
+}
+.shop .shop-item image {
+  width: 100%;
+}
+.shop .shop-item label{
+  display: block;
+  margin: 10rpx 0 0 10rpx;
+}
+.shop .shop-item .name{
+  vertical-align: center;
+  font-size: 90%; 
+  margin-top: 0rpx;
+}
+.shop .shop-item .paid-num{
+  opacity:0.7;
+  font-size: 50%; 
+}
+.shop .shop-item .price{
+  color: red;
+}
+.shop .shop-item .buy{
+  position: absolute;
+  right: 10rpx;
+  bottom: 0rpx;
+  width: 40rpx;
+  height: 40rpx;
+  padding: 10rpx;
+  border-radius:50%; 
+  background-color: red;
+}
+.shop .shop-item .buy image {
+  width: 100%;
+  height: 100%;
+}
+/* 购物车详情 */
+.car{
+  border: 1rpx solid transparent;
+  padding-bottom: 100rpx; 
+}
+.car .car-empty image {
+  display: block;
+  margin: 30% auto 0rpx;
+  width: 120rpx;
+  height: 120rpx;
+}
+.car .car-empty text {
+  display: block;
+  margin: 5% auto;
+  text-align: center
+}
+.car checkbox{
+  margin: 15rpx 10rpx;
+}
+.car .car-top{
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 80rpx;
+  background: #fff;
+}
+.car .car-top .name {
+  display: block;
+  position: absolute;
+  left: 0rpx;
+  top: 15rpx;
+  width: 100%;
+  font-size: 120%; 
+  text-align: center;
+}
+.car .car-item {
+  position: relative;
+  margin-top: 1%; 
+  background: #fff;
+}
+.car .car-item image{
+  display: inline-block;
+  vertical-align: middle;
+  width: 30%;
+}
+.car .car-item .intr {
+  display: inline-block;
+  width: 40%;
+  vertical-align: top;
+  margin-left:20rpx; 
+}
+.car .car-item .intr .name {
+  display: block;
+  margin-top:20rpx; 
+  font-size: 90%;
+}
+.car .car-item .intr .price {
+  display: block;
+  font-size: 90%;
+  color: red;
+  margin-top:20rpx; 
+}
+.car .car-item .item-op {
+   display: block;
+   position: absolute;
+   bottom: 10rpx;
+   right: 10rpx;
+   width: 150rpx;
+}
+.car .car-item .item-op .minus,
+.car .car-item .item-op .plus{
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  border: 1rpx solid #444;
+  border-radius: 50%;
+  padding: 5rpx;
+  line-height: 80%;
+  text-align: center;
+  
+}
+.car .car-item .item-op .num{
+  display: inline-block;
+  width: 60rpx;
+  margin: 0 5rpx;
+  text-align: center;
+  font-size: 80%;
+}
+
+.car .car-bottem {
+  position: fixed;
+  display: block;
+  width: 100%;
+  bottom: 0rpx;
+  left: 0rpx;
+  background: #e0e0e0;
+  overflow-y: hidden;
+  z-index: 99;
+}
+.car .car-bottem text{
+  display: inline-block;
+  margin: 20rpx 0 0 20rpx;
+}
+.car .car-bottem .total-price{
+  color: red;
+}
+.car .car-bottem .submit{
+  display: block;
+  float: right;
+  width: 25%;
+  background: red;
+  color: white;
+  border-radius: 0; 
+  white-space:nowrap;
+  text-align: center;
+  padding: 0rpx;
+}
+
+/* 订单 */
+.shopOrder .no-order image {
+  display: block;
+  margin: 30% auto 0rpx;
+  width: 120rpx;
+  height: 120rpx;
+}
+.shopOrder .no-order text {
+  display: block;
+  margin: 5% auto;
+  text-align: center
+}
+.shopOrder .order {
+  background: #fff;
+  padding: 10rpx;
+  margin-top:10rpx; 
+}
+.shopOrder .order .order-info {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding-bottom:10rpx; 
+}
+.shopOrder .order .order-info .id {
+  display: block;
+}
+.shopOrder .order .order-info .time {
+  display: block;
+  color: #444;
+  font-size: 80%;
+  margin-bottom: 5rpx;
+}
+.shopOrder .order .order-info .paied,
+.shopOrder .order .order-info .to-pay {
+  position: absolute;
+  display: block;
+  top: 10rpx;
+  right: 10rpx;
+}
+.shopOrder .order .order-info .paied{
+  color: #0775f3;
+}
+.shopOrder .order .order-info .to-pay{
+  background-color: #f00;
+  color: #fff;
+  font-size: 100%;
+  top: 0rpx;
+  right: 0rpx;
+}
+.shopOrder .order .item{
+  border-top:1rpx solid #f8f8f8; 
+}
+.shopOrder .order .item image {
+  display: inline-block;
+  width: 20%;
+}
+.shopOrder .order .item .intr{
+  display: inline-block;
+  margin-left: 20rpx; 
+  vertical-align: top;
+}
+.shopOrder .order .item .intr label {
+  display: block;
+  font-size: 80%;
+  color: #444;
+}
+.shopOrder .order .item .intr .name {
+  font-size: 80%;
+}
+.shopOrder .order .item .intr .price {
+  margin-top: 10rpx;
+}
+.shopOrder .order .item .intr .num {
+  margin-top: 10rpx;
+}
+.shopOrder .order .summary{
+  display: block;
+  width: 100%;
+  border-top:1rpx solid #f8f8f8; 
+  text-align: right;
+}

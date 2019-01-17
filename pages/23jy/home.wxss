@@ -1,0 +1,39 @@
+
+
+.video {
+    width: 730rpx;
+  margin-top: 15rpx;
+  margin-bottom: 15rpx;
+  text-align: center;
+  border-radius:2%
+}
+
+
+.v2 {
+  font-weight: 400;
+  font-size: 17px;
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.v33 {
+  display: -webkit-box;
+  font-size: 13px;
+  color: rgb(183, 183, 184);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.v11 {
+  -webkit-box-flex: 1;
+  -webkit-flex:1;
+  flex: 1;
+  min-width: 0
+}

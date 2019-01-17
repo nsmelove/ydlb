@@ -1,0 +1,92 @@
+<view class='page'>
+  <!-- 顶层top切换 -->
+  <view class='top-tab'>
+    <view class='tab-home'>
+      <image src='{{tabs.home.selected ? tabs.home.selectIcon : tabs.home.icon}}' data-key="home" catchtap='showTab'/>
+    </view>
+    <view class='tab-car'>
+      <image src='{{tabs.car.selected ? tabs.car.selectIcon : tabs.car.icon}}' data-key="car" catchtap='showTab'/>
+      <text class='tip-num' style='display:{{shoppingCar.num <= 0 ? "none" : "block"}}
+      >{{shoppingCar.num < 100 ? shoppingCar.num : "99+"}}</text>
+    </view>
+    <view class='tab-order'>
+      <image src='{{tabs.order.selected ? tabs.order.selectIcon : tabs.order.icon}}' data-key="order" catchtap='showTab'/>
+      <text class='dot' style='display:{{shopOrder.needPay ? "block" : "none"}}'></text>
+    </view>
+  </view>
+  <!-- 商品列表 -->
+  <view class='shop' style='display:{{tabs.home.selected ? "flex" : "none"}}'>
+    <view class="no-item" wx:if="{{shopItem.items.length == 0}}">
+      <image src='tabbarIcon/1Blue.png'/>
+      <text>暂无商品</text>
+    </view>
+    <block wx:if="{{shopItem.items.length > 0}}">
+      <view class="shop-item" wx:for="{{shopItem.items}}" wx:key="id">
+        <image src='{{item.img}}' mode="widthFix"/>
+        <label class="name">{{item.name}}</label>
+        <label class="paid-num">{{item.paiedNum}}人付款</label>
+        <label class="price">¥{{item.price}}</label>
+        <view class="buy" data-id='{{item.id}}' catchtap="addToShoppingCar" hover-class='tap-on'>
+          <image src='tabbarIcon/CarBlue.png' data-id='{{item.id}}'></image>
+        </view>
+      </view>  
+    </block>
+  </view>
+  <!-- 购物车 -->
+  <view class='car' style='display:{{tabs.car.selected ? "block" : "none"}}'>
+    <view class="car-empty" wx:if="{{shoppingCar.items.length == 0}}">
+      <image src='tabbarIcon/CarBlue.png'/>
+      <text>购物车是空的</text>
+    </view>
+    <block wx:if="{{shoppingCar.items.length > 0}}">
+      <view class='car-top'>
+        <text class='name'>基因涂鸦</text>
+        <checkbox class='check' checked='{{shoppingCar.allChecked}}' bindtap='topCheckChange'/>
+      </view>
+      <view class="car-item" wx:for="{{shoppingCar.items}}" wx:key="id">
+        <checkbox class='check' checked='{{item.checked}}' data-id='{{item.id}}' bindtap='itemCheckChange'/>
+        <image src='{{item.img}}' mode="widthFix"/>
+        <view class='intr'>
+          <label class="name">{{item.name}}</label>
+          <label class="price">¥{{item.price}}</label>
+        </view>
+        <view class='item-op'>
+          <button class='minus' bindtap='remFromShoppingCar' data-id='{{item.id}}' >-</button>
+          <input class="num" type='number' value='{{item.num}}' data-id='{{item.id}}'
+            bindinput='changgingShoppingCarItemNum' bindblur="changedShoppingCarItemNum"/>
+          <button class='plus' bindtap='addToShoppingCar' data-id='{{item.id}}' >+</button>
+        </view>
+      </view>
+      <view class='car-bottem'>
+        <text>合计:</text><text class='total-price'>¥{{shoppingCar.checkedSum}}</text>
+        <button class='submit' bindtap='submitOrder'>结算({{shoppingCar.checkedNum}})</button>
+      </view>  
+    </block>
+  </view>
+  <!-- 订单 -->
+  <view class='shopOrder' style='display:{{tabs.order.selected ? "block" : "none"}}'>
+    <view class="no-order" wx:if="{{shopOrder.orders.length == 0}}">
+      <image src='../../img/order_blue.png'/>
+      <text>您还没有购买任何商品</text>
+    </view>
+    <block wx:if="{{shopOrder.orders.length > 0}}">
+      <view class="order" wx:for="{{shopOrder.orders}}" wx:key="id">
+        <view class='order-info'>
+          <text class='id'>订单编号：{{item.id}}</text>
+          <text class='time'>{{item.paied ? item.paiedTimeFormat : item.createTimeFormat}}</text>
+          <text wx:if="{{item.paied}}" class='paied'>已付款</text>
+          <button wx:if="{{!item.paied}}" class="to-pay">去付款</button>
+        </view>
+        <view class='item' wx:for="{{item.items}}" wx:key="id">
+          <image src='{{item.img}}' mode="widthFix"/>
+          <view class='intr'>
+            <label class="name">{{item.name}}</label>
+            <label class="price">¥{{item.price}}</label>
+            <label class="num">x{{item.num}}</label>
+          </view>
+        </view>
+        <text class='summary'>共{{item.totalNum}}件商品，合计:¥{{item.totalFee}}</text>
+      </view> 
+    </block>
+  </view>
+</view>

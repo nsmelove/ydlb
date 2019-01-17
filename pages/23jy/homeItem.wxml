@@ -1,0 +1,15 @@
+<view>
+  <view>
+    <image class="topImg" src='{{content.url}}'></image>
+  </view>
+  <view>
+    <text selectable='true' class='topText'>{{content.text}}</text>
+  </view>
+  <view class=''></view>
+
+  <view style='display:flex;align-items:center;margin-top:8rpx;margin-bottom:8rpx'><view class='contentLine'></view><view>图文介绍</view><view class='contentLine'></view></view>
+  
+  <view wx:for="{{bottomUrl}}" wx:key="*this">
+    <image class='bottomImg' src='{{item.url}}'></image>
+  </view>
+</view>

@@ -1,0 +1,5 @@
+<view>
+  <view>
+    <image style='width:{{screenW}}px;height:{{screenH}}px' src="{{imgUrl}}" bindload="bindload"></image>
+  </view>
+</view>
