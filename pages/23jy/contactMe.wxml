@@ -61,12 +61,14 @@
     <text>QQ:180849347272</text>
     <text>Imail:bcg003@bcgene.cn</text>
   </view>
+  <view class='major-intr'>
+    <text>人体密码基因--解读生命密码</text> 
+    <text>预知未来健康风险,让健康触手可及</text>
+</view>
 </view>
 
 <view class='line'></view>
-
-<view class='major-intr'>
-    <text>人体密码基因--解读生命密码</text> 
-    <text>预知未来健康风险,让健康触手可及</text>
-    <video class='video' poster='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/video/tycj.png' src='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/video/tycj.mp4'></video>
+<view class='intr-video'>
+  <video class='video' poster='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/video/tycj.png' src='https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/video/tycj.mp4'></video>
 </view>
+

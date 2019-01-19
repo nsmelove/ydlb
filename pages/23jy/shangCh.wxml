@@ -24,7 +24,7 @@
       <view class="shop-item" wx:for="{{shopItem.items}}" wx:key="id">
         <image src='{{item.img}}' mode="widthFix"/>
         <label class="name">{{item.name}}</label>
-        <label class="paid-num">{{item.paiedNum}}人付款</label>
+        <label class="paid-num">{{item.paidNum}}人付款</label>
         <label class="price">¥{{item.price}}</label>
         <view class="buy" data-id='{{item.id}}' catchtap="addToShoppingCar" hover-class='tap-on'>
           <image src='tabbarIcon/CarBlue.png' data-id='{{item.id}}'></image>
@@ -72,10 +72,11 @@
     <block wx:if="{{shopOrder.orders.length > 0}}">
       <view class="order" wx:for="{{shopOrder.orders}}" wx:key="id">
         <view class='order-info'>
-          <text class='id'>订单编号：{{item.id}}</text>
-          <text class='time'>{{item.paied ? item.paiedTimeFormat : item.createTimeFormat}}</text>
-          <text wx:if="{{item.paied}}" class='paied'>已付款</text>
-          <button wx:if="{{!item.paied}}" class="to-pay">去付款</button>
+          <text class='id'>订单号：{{item.id}}</text>
+          <text class='time'>{{item.createTimeFormat}}</text>
+          <text wx:if="{{item.paid == 1}}" class='paid'>已付款</text>
+          <button wx:if="{{item.paid == 0}}" class="to-pay" bindtap='requestPayment' data-prepayId="{{item.prepayId}}">去付款</button>
+          <text wx:if="{{item.paid == -1}}" class='expired'>已失效</text>
         </view>
         <view class='item' wx:for="{{item.items}}" wx:key="id">
           <image src='{{item.img}}' mode="widthFix"/>

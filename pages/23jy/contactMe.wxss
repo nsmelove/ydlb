@@ -66,6 +66,7 @@ display: none
 }
 .contact .company text{
   font-size: 14px;
+  color: #666;
 }
 .contact .contact-way{
   margin-top: 15px;
@@ -74,14 +75,15 @@ display: none
 .contact .contact-way text{
   margin-top:5px;
 }
-.major-intr{
+.contact .major-intr{
   font-size: 17px;
+  margin-top: 10px;
 }
-.major-intr text{
+.contact .major-intr text{
   display: block;
-  padding: 5px 15px;
 }
-.major-intr video {
+
+.intr-video video {
   border-radius:2%;
   width: 730rpx;
   display:block;

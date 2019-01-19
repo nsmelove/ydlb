@@ -200,7 +200,8 @@ page {
   border: 1rpx solid #444;
   border-radius: 50%;
   padding: 5rpx;
-  line-height: 80%;
+  font-size: 30rpx;
+  line-height: 25rpx;
   text-align: center;
   
 }
@@ -273,14 +274,15 @@ page {
   font-size: 80%;
   margin-bottom: 5rpx;
 }
-.shopOrder .order .order-info .paied,
-.shopOrder .order .order-info .to-pay {
+.shopOrder .order .order-info .paid,
+.shopOrder .order .order-info .to-pay,
+.shopOrder .order .order-info .expired {
   position: absolute;
   display: block;
   top: 10rpx;
   right: 10rpx;
 }
-.shopOrder .order .order-info .paied{
+.shopOrder .order .order-info .paid{
   color: #0775f3;
 }
 .shopOrder .order .order-info .to-pay{
@@ -289,6 +291,9 @@ page {
   font-size: 100%;
   top: 0rpx;
   right: 0rpx;
+}
+.shopOrder .order .order-info .expired{
+  color: #999;
 }
 .shopOrder .order .item{
   border-top:1rpx solid #f8f8f8; 

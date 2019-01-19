@@ -1,9 +1,8 @@
 // pages/23jy/shangCh.js
-const md55 = require('./md5.js')
+const md5 = require('./md5.js').hexMD5
 const xmlParse = require('./lib/dom-parser.js').DOMParser
-let app = getApp();
-let shopItems = require("../../data/shopItems.js").shopItems
 let formatTime = require("../../utils/util.js").formatTime
+let app = getApp();
 Page({
   /**
    * 页面的初始数据
@@ -32,8 +31,8 @@ Page({
       }
     },
     shopItem:{
-      offset:0,
-      limit:0,
+      page:0,
+      size:10,
       items:[]
     },
     shoppingCar:{
@@ -44,50 +43,17 @@ Page({
       items: []
     },
     shopOrder:{
-      offset: 0,
-      limit: 0,
+      page: 0,
+      size: 10,
       needPay: false,
-      orders: [{
-        id:8888888888888,
-        items:[{
-          id: 1,
-          name: "基因检测8项",
-          img: "https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/--homeItem--/item3/0.jpg",
-          price: 888,
-          num: 2,
-        }, {
-            id: 2,
-            name: "基因检测32项",
-            img: "https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/--homeItem--/item3/0.jpg",
-            price: 3000,
-            num: 2,
-          }],
-        totalNum:4,
-        totalFee:7776,
-        createTime: 1560000000,
-        paiedTime: 1560000000,
-        createTimeFormat: "2019年1月17 10:48:16",
-        paied:true,
-        paiedTimeFormat: "2019年1月17 10:48:16"
-      },
-        {
-          id: 8888888888889,
-          items: [{
-            id: 1,
-            name: "基因检测8项",
-            img: "https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/--homeItem--/item3/0.jpg",
-            price: 888,
-            num: 2,
-          }],
-          totalNum: 4,
-          totalFee: 7776,
-          createTime: 1560000000,
-          createTimeFormat: "2019年1月17 10:48:16"
-        }]
+      orders: []
     }
   },
   showTab: function (e) {
-    let key = e.currentTarget.dataset.key;
+    let key = e;
+    if(typeof e == "object"){
+      key = e.currentTarget.dataset.key;
+    }
     if (this.data.tabs[key].selected){
       return;
     }
@@ -139,6 +105,7 @@ Page({
       if (item.id == itemId) {
         let carItem = JSON.parse(JSON.stringify(item));
         carItem.num = 1;
+        carItem.checked = true;
         this.data.shoppingCar.items.push(carItem);
         return this.shoppingCarChanged();
       }
@@ -223,174 +190,182 @@ Page({
     }
     this.shoppingCarChanged();
   },
-
-  submitOrder: function(){
-    if (this.data.shoppingCar.checkedNum == 0){
-      return;
-    }
-    let order = {};
-    order.id = new Date().getTime();
-    order.createTime = new Date().getTime();
-    order.totalNum = this.data.shoppingCar.checkedNum;
-    order.totalFee = this.data.shoppingCar.checkedSum;
-    order.items = [];
-    for(let i = 0; i < this.data.shoppingCar.items.length;){
-      let item = this.data.shoppingCar.items[i];
-      if(item.checked){
-        order.items.push(JSON.parse(JSON.stringify(item)));
-        this.data.shoppingCar.items.splice(i,1);
-      }else{
-        i++
-      }
-    }
-
-    order.createTimeFormat = formatTime(new Date(order.createTime));
-    this.data.shopOrder.orders.push(order);
-    this.data.shopOrder.needPay = true;
-    this.shoppingCarChanged();
-    this.setData({
-      shopOrder: this.data.shopOrder
-    });
-  },
-
-
-  formSubmit: function(res) {
-    let that = this
-    console.log(res)
+  /**统一下单接口 */
+  preOrder: function(shopItems, callback){
     wx.request({
-      url: 'https://flyhui.cn/cusInfo',
-      method: 'POST',
-      data: res.detail.value,
-      success: function(res) {
-        console.log(res)
-        if (res.data === 'ok') {
-          that.setData({
-            yesOrNo: true
-          })
-        }else{
-          console.log('保存信息失败，请重试！')
+      url: app.serverAddress + "gene/wx_prepay",
+      method: "post",
+      header: { "sessionId": app.sessionId },
+      data: shopItems,
+      complete: function (res) {
+        console.log("preOrder", res);
+        if (res.statusCode == 200 && res.data) {
+          callback(res.data);
+        } else {
+          callback();
         }
       }
     })
   },
-
-  wxClick: function(res) {
-    let qian = parseInt(res.currentTarget.id)
-    console.log(qian)
-
-    let that = this
-    //通用日期时间定义
-    let year = (new Date()).getFullYear() + ''
-    let month = ((new Date()).getMonth() + 1) + ''
-    let day = (new Date()).getDate() + ''
-    let hours = (new Date()).getHours() + ''
-    let minutes = (new Date()).getMinutes() + ''
-    let seconds = (new Date()).getSeconds() + ''
-    let millseconds = (new Date()).getMilliseconds() + ''
-
-    //统一下单接口
-    let appid = 'wx2223ba0264d4b5c4'
-    let mch_id = 1511480931
-    let nonce_str = Math.random().toString(18).substr(2)
-    let body = 'gen-tc'
-    let out_trade_no = 'G' + year + month + day + hours + minutes + seconds + millseconds
-    let total_fee = 1
-    let spbill_create_ip = '127.0.0.1'
-    let notify_url = 'https://flyhui.cn/wxpay'
-    let trade_type = 'JSAPI'
-    let key = 'GewFabcdefghijklmnopqrstuvwxyzyZ'
-
-    //发起小程序支付
-    let timeStamp = (new Date()).getTime() + ''
-    let nonceStr = Math.random().toString(28).substr(2)
-    let signType = 'MD5'
-    let appId = 'wx2223ba0264d4b5c4'
-
-    wx.login({
-      success(r) {
-        console.log(r)
-        if (r.code) {
-          wx.request({
-            url: 'https://flyhui.cn/login?code=' + r.code,
-            success: function(res) {
-              console.log(res)
-              let openid = res.data
-              let strA = 'appid=' + appid + '&body=' + body + '&mch_id=' + mch_id + '&nonce_str=' + nonce_str + '&notify_url=' + notify_url + '&openid=' + openid + '&out_trade_no=' + out_trade_no + '&spbill_create_ip=' + spbill_create_ip + '&total_fee=' + total_fee + '&trade_type=' + trade_type
-              let strTemp = strA + '&key=' + key
-              let sign = md55.hexMD5(strTemp).toUpperCase()
-
-              wx.request({
-                url: 'https://api.mch.weixin.qq.com/pay/unifiedorder',
-                data: `<xml><appid>${appid}</appid><body>${body}</body><mch_id>${mch_id}</mch_id><nonce_str>${nonce_str}</nonce_str><notify_url>${notify_url}</notify_url><openid>${openid}</openid><out_trade_no>${out_trade_no}</out_trade_no><spbill_create_ip>${spbill_create_ip}</spbill_create_ip><total_fee>${total_fee}</total_fee><trade_type>${trade_type}</trade_type><sign>${sign}</sign></xml>`,
-                method: 'POST',
-                header: {
-                  'content-type': 'text/xml'
-                },
-                success: function(res) {
-                  console.log(res)
-                  let newData = new xmlParse().parseFromString(res.data, 'text/xml')
-                  let prepay_id = (newData.getElementsByTagName('prepay_id')[0]).firstChild.data
-                  let strB = 'appId=' + appId + '&nonceStr=' + nonceStr + '&package=' + 'prepay_id=' + prepay_id + '&signType=' + signType + '&timeStamp=' + timeStamp + '&key=' + key
-                  let paySign = md55.hexMD5(strB)
-
-                  wx.requestPayment({
-                    timeStamp: timeStamp,
-                    nonceStr: nonceStr,
-                    package: 'prepay_id=' + prepay_id,
-                    signType: signType,
-                    paySign: paySign,
-                    success: function(res) {
-                      console.log(res)
-                      that.setData({
-                        yesOrNo: false
-                      })
-                    },
-                    fail: function(res) {
-                      console.log(res)
-                    },
-                    complete: function(res) {
-                      console.log(res)
-                    }
-                  })
-                }
-              })
-            },
-            fail: function(res) {
-              console.log(res)
+  /**调起支付请求 
+   * timeStamp	string		是	时间戳，从 1970 年 1 月 1 日 00:00:00 至今的秒数，即当前的时间
+   * nonceStr	string		是	随机字符串，长度为32个字符以下
+   * package	string		是	统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=***
+   * signType	string	MD5	否	签名算法
+   * paySign	string		是	签名，具体签名方案参见 小程序支付接口文档
+   * success	function		否	接口调用成功的回调函数
+   * fail	function		否	接口调用失败的回调函数
+   * complete	function		否	接口调用结束的回调函数（调用成功、失败都会执行）
+   * 
+   * paySign = MD5(appId=wxd678efh567hg6787
+   * &nonceStr=5K8264ILTKCH16CQ2502SI8ZNMTM67VS
+   * &package=prepay_id=wx2017033010242291fcfe0db70013231072
+   * &signType=MD5
+   * &timeStamp=1490840662
+   * &key=qazwsxedcrfvtgbyhnujmikolp111111)
+   * = 22D9B4E54AB1950F51E0649E8810ACD6
+  */
+  requestPayment: function (prepayId, callback){
+    let that = this;
+    if (typeof prepayId == "object"){
+      prepayId = prepayId.currentTarget.dataset.prepayid;
+    }
+    if (prepayId) {
+      let timeStamp = Math.floor(new Date().getTime / 1000) + "";
+      let nonceStr = Math.floor(Math.random() * 100000000000 + 100000000000) + "";
+      let pkg = "prepay_id=" + prepayId;
+      let signStr = [
+        "appId=" + app.appId,
+        "&nonceStr=" + nonceStr,
+        "&package=" + pkg,
+        "&signType=MD5",
+        "&timeStamp=" + timeStamp,
+        "&key=" + app.mchKey
+      ].join("");
+      let paySign = md5(signStr);
+      wx.requestPayment({
+        timeStamp: timeStamp,
+        nonceStr: nonceStr,
+        package: pkg,
+        signType: "MD5",
+        paySign: paySign,
+        success: res =>{
+          //更新订单状态
+          for (let order of that.data.shopOrder.orders) {
+            if (order.prepayId == prepayId) {
+              order.paid = 1;
+              that.setData({shopOrder: that.data.shopOrder });
+              break;
             }
-          })
-        } else {
-          console.log('登录失败！' + res.errMsg)
-
+          }
+        },
+        complete: res => {
+          console.log(res);
+          callback && callback(res);   
         }
+      });
+    }
+  },
+  /**提交订单 */
+  submitOrder: function(){
+    let that = this;
+    if (this.data.shoppingCar.checkedNum == 0){
+      return;
+    }
+    let shopItems = [];
+    for(let i = 0; i < this.data.shoppingCar.items.length; i++){
+      let item = this.data.shoppingCar.items[i];
+      if(item.checked){
+        shopItems.push(JSON.parse(JSON.stringify(item)));
+      }
+    }
+    this.preOrder(shopItems, data =>{
+      this.requestPayment(data, res =>{
+        //移除购物车支付商品
+        for (let shopItem of shopItems) {
+          for (let i = 0; i < that.data.shoppingCar.items.length; i++) {
+            let item = this.data.shoppingCar.items[i];
+            if (item.id == shopItem.id) {
+              that.data.shoppingCar.items.splice(i, 1);
+              break;
+            }
+          }
+        }
+        that.shoppingCarChanged();
+        that.loadShopOrders(true, res => that.showTab("order"));
+      });
+    });
+  },
+  loadShopItems: function(reload,callback) {
+    let that = this;
+    let page = reload ? 0: this.data.shopItem.page + 1;
+    let size = reload ? 10 : this.data.shopItem.size;
+    wx.request({
+      url: app.serverAddress + "gene/shop_items?page="+page+"&size="+size,
+      complete: function (res) {
+        console.log("getShopItems", res);
+        if (res.statusCode == 200 && res.data) {
+          if (reload) {
+            that.data.shopItem.items = [];
+          }
+          for (let item of res.data) {
+            that.data.shopItem.items.push(item);
+          }
+          that.data.shopItem.page = page;
+          that.data.shopItem.size = size;
+          that.setData({
+            shopItem: that.data.shopItem
+          });
+        }
+        callback && callback(res);
+      }
+    })
+  },
+  loadShopOrders: function(reload, callback) {
+    let that = this;
+    let page = reload ? 0 : this.data.shopOrder.page + 1;
+    let size = reload ? 10 : this.data.shopOrder.size;
+    wx.request({
+      url: app.serverAddress + "gene/shop_orders?page=" + page + "&size=" + size,
+      header: {"sessionId": app.sessionId},
+      complete: function (res) {
+        console.log("getShopOrders", res);
+        if (res.statusCode == 200 && res.data) {
+          if (reload) {
+            that.data.shopOrder.orders = [];
+          }
+          for (let order of res.data) {
+            if(order.paid == 0){
+              that.data.shopOrder.needPay = true;
+            }
+            if (order.items && typeof order.items == "string") {
+              order.items = JSON.parse(order.items);
+            }
+            if (order.createTime) {
+              order.createTimeFormat = formatTime(new Date(order.createTime));
+            }
+            if (order.paidTime) {
+              order.paidTimeFormat = formatTime(new Date(order.paidTime));
+            }
+            that.data.shopOrder.orders.push(order);
+            that.data.shopOrder.page = page;
+            that.data.shopOrder.size = size;
+          }
+          that.setData({
+            shopOrder: that.data.shopOrder
+          });
+        }
+        callback && callback(res);
       }
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-
   onLoad: function(query) {
     let that = this;
-    for (let item of shopItems){
-      that.data.shopItem.items.push(item);
-    }
-    that.setData({
-          shopItem: that.data.shopItem
-    });
-    console.log(that.data.shopItem.items);
-    // wx.request({
-    //   url: '../../data/shopItems.json',
-    //   success: function(res) {
-    //     that.data.shopItem.items.push(res.data);
-    //     that.setData({
-    //       shopItem: that.data.shopItem
-    //     })
-    //   },
-    //   fail: function(res) {
-    //     console.log(res)
-    //   }
-    // })
+    that.loadShopItems(true);
+    that.loadShopOrders(true);
   },
 
   /**
@@ -425,14 +400,24 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    if (this.data.tabs["home"].selected) {
+      this.loadShopItems(true, res => wx.stopPullDownRefresh());
+    } else if (this.data.tabs["order"].selected) {
+      this.loadShopOrders(true, res => wx.stopPullDownRefresh());
+    }else{
+      wx.stopPullDownRefresh();
+    }
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    if (this.data.tabs["home"].selected) {
+      this.loadShopItems(false);
+    } else if (this.data.tabs["order"].selected) {
+      this.loadShopOrders(false);
+    }
   },
 
   /**

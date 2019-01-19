@@ -61,7 +61,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -75,12 +75,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (sha) {
-    if (sha.from === 'menu') {
-
-    }
     return {
       title: "基因时代已来Ⅱ解读生命密码",
-      //imageUrl: "https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/bcg/jyjcscjsl.jpg"
+      imageUrl: "https://773233436-1257195280.cos.ap-chengdu.myqcloud.com/gs.jpg"
     }
   }
 })
